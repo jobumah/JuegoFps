@@ -12,6 +12,9 @@ public class Jugador : MonoBehaviour
     private float velocidadVertical = 0f;
     public float gravedad = -9.81f;
 
+    [Header("Salto")]
+    public float fuerzaSalto = 3f;
+
     [Header("Vista")]
     private Vector2 inputVista;
     public Camera camera;
@@ -66,19 +69,29 @@ public class Jugador : MonoBehaviour
         }
     }
 
-    private void GestionaMovimiento() //esto para que tenga gravedad manual 
+    private void OnJump(InputValue inputValue) //salto (opcional)
+    {
+        if (characterController.isGrounded)
+        {
+            velocidadVertical = fuerzaSalto;
+        }
+    }
+
+
+    private void GestionaMovimiento() //opcional para salto y gravedad
     {
         Vector3 direccionMundo = CalculaDireccionMundo();
         movimientoActual.x = direccionMundo.x;
         movimientoActual.z = direccionMundo.z;
 
+        // GRAVEDAD
         if (!characterController.isGrounded)
         {
             velocidadVertical += gravedad * Time.deltaTime;
         }
-        else
+        else if (velocidadVertical < 0)
         {
-            velocidadVertical = -2f;
+            velocidadVertical = -2f; 
         }
 
         movimientoActual.y = velocidadVertical;

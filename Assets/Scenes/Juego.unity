@@ -50330,6 +50330,7 @@ MonoBehaviour:
   characterController: {fileID: 1482781237}
   velocidad: 5
   gravedad: -9.81
+  fuerzaSalto: 3
   camera: {fileID: 1704015173}
   puntoDisparo: {fileID: 1073742437}
   bala: {fileID: 778287297678931788, guid: 2be2ce1c6e7660c46822345e405815a0, type: 3}
